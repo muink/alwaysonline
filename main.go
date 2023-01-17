@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/miekg/dns"
 	"log"
 	"net"
 	"net/http"
@@ -110,16 +109,6 @@ func main() {
 	// 	}
 	// }
 	// go tlsHttpServer.ListenAndServe()
-
-	// DNS TCP server setup
-	dnsTcp1 := &dns.Server{Addr: ":53", Net: "tcp"}
-	dnsTcp1.Handler = &dnsRequestHandler{}
-	go dnsTcp1.ListenAndServe()
-
-	// DNS UDP server setup
-	dnsUdp1 := &dns.Server{Addr: ":53", Net: "udp"}
-	dnsUdp1.Handler = &dnsRequestHandler{}
-	go dnsUdp1.ListenAndServe()
 
 	// done
 	log.Println("[MAIN] Server started.")
